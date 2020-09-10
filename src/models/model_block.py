@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 
-def conv_block(inputs, conv_typem kernel, kernel_size, strides, padding="same", relu = True):
+def conv_block(inputs, conv_type, kernel, kernel_size, strides, padding="same", relu = True):
 
     if (conv_type == 'ds'):
         
