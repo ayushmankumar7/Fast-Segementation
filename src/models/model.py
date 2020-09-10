@@ -17,4 +17,6 @@ gfe_layer = bottleneck_block(gfe_layer, 96, (3,3), t = 6, strides = 2, n=3)
 gfe_layer = bottleneck_block(gfe_layer, 128,(3,3), t = 6, strides = 1, n=3)
 
 
+# PPM 
 
+gfe_layer = pyramid_pooling_block(gfe_layer, [2,4,6,8])
