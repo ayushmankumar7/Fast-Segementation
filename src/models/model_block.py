@@ -27,14 +27,14 @@ def _res_bottleneck(inputs, filters, kernel, t, s, r = False):
 
     x = conv_block(inputs, "conv", tchannel, (1,1), strides =(1,1) )
 
-    x = tf.keras.layers.DepthWiseConv2D(kernel, strides = (s,s), depth_multiplier = 1, padding = 'same')(x)
+    x = tf.keras.layers.DepthwiseConv2D(kernel, strides = (s,s), depth_multiplier = 1, padding = 'same')(x)
     x = tf.keras.layers.BatchNormalization()(x)
     x = tf.keras.activations.relu(x)
 
     x = conv_block(x, 'conv', filters, (1,1), strides =(1,1), padding = 'same', relu = False)
 
     if r:
-        x = tf.keras.keras.layers.add([x, inputs])
+        x = tf.keras.layers.add([x, inputs])
 
     return x
 
@@ -58,7 +58,7 @@ def pyramid_pooling_block(input_tensor, bin_sizes):
     for bin_size in bin_sizes:
         x = tf.keras.layers.AveragePooling2D(pool_size = (w//bin_size, h//bin_size), strides = (w//bin_size, h//bin_size))(input_tensor)
         x = tf.keras.layers.Conv2D(128, 3, 2, padding = 'same')(x)
-        x = tf.keras.Lambda(lambda x: tf.image.resize(x, (w,h)))(x)
+        x = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (w,h)))(x)
 
         concat_list.append(x) 
 
