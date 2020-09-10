@@ -39,6 +39,15 @@ def _res_bottleneck(inputs, filters, kernel, t, s, r = False):
     return x
 
 
+def bottleneck_block(inputs, filters, kernel, t, strides, n):
+
+    x = _res_bottleneck(inputs, filters, kernel, t, strides)
+
+    for i in range(1, n):
+        x = _res_bottleneck(x, filters, kernel, t, 1, True)
+
+    return x 
+
 
 
 
